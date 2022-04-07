@@ -38,7 +38,7 @@
     data() {
       return{
         img: JSON.parse(localStorage.getItem('image')),
-        likecnt : 0,
+        likecnt : '좋아요',
         result: JSON.parse(localStorage.getItem('result')),
         checked: JSON.parse(localStorage.getItem('dog_breed')),
       }
