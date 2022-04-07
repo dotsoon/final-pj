@@ -63,7 +63,8 @@ export default {
         fileList : [],
         isDragged : '',
         upload: { userid:JSON.parse(localStorage.getItem('userid')) ,image:null ,dog_breed:JSON.parse(localStorage.getItem('dog_breed')) },
-        modal: false,        
+        modal: false,       
+        checked: JSON.parse(localStorage.getItem('dog_breed')),
     }
   },
   mounted() {
@@ -89,6 +90,7 @@ export default {
 				.then((res) => {
 				if (res.status == 200) {          
           this.result = res.data['testresult'];
+          let img_name = res.data['image'];
           localStorage.setItem('result', JSON.stringify(this.result));
           localStorage.setItem('image_name', JSON.stringify(img_name));
           this.modal = false;
