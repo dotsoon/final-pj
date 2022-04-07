@@ -83,7 +83,7 @@ export default {
 					return
       } else {
         this.modal = true;
-        this.$http.post('http://3.113.137.203:8900/dogobesitytest/dogimage/',{
+        this.$http.post('http://35.76.37.170:8980/dogobesitytest/dogimage/',{
 				upload: this.upload,
 				})        
 				.then((res) => {
