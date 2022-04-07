@@ -90,6 +90,7 @@ export default {
 				if (res.status == 200) {          
           this.result = res.data['testresult'];
           localStorage.setItem('result', JSON.stringify(this.result));
+          localStorage.setItem('image_name', JSON.stringify(img_name));
           this.modal = false;
           this.$router.push("./testresult");
 				}
