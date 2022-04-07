@@ -1,7 +1,7 @@
 <template>
   <div id = "secure">
     <h1>사진첨부</h1>
-    <br><br><span>선택한 견종: {{checked}}</span><br>
+    <br><br><span>선택한 견종 : {{checked}}</span><br>
   <div class="container">
     <div class="file-upload-container" 
       @dragenter="onDragenter"

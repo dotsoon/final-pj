@@ -3,12 +3,12 @@
         <img alt="Dog" src="../assets/Dog.jpg" height="350px" width="350px">
         <h2>로그인</h2>
         <div class="form-inputs">
-            <label for="username">아 이 디 :</label>
+            <label for="username">아 이 디 </label>
             <input type="text" id="username" name="username"  
             v-model="user.userid" placeholder="Username" />
         </div>
         <div class="form-inputs">
-            <label for="password">비밀번호 : </label>
+            <label for="password">비밀번호 </label>
             <input type="password" id="password" name="password" 
             v-model="user.password" placeholder="Password" />
         </div>

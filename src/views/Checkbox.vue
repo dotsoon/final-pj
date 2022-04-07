@@ -60,7 +60,7 @@
       </div>
     </div>
     <div>
-      <br><br><span>선택한 견종: {{checked[0]}}</span><br>
+      <br><br><span>선택한 견종 : {{checked[0]}}</span><br>
       <button class="btn" @click="secure()">다음</button>
     </div>
   </div>

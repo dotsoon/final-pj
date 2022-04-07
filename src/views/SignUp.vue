@@ -5,7 +5,7 @@
 		<div id='signup'>
 		<div class="form-inputs">
 			<div>
-				<label for="username">아이디 : </label>      
+				<label for="username">아이디 </label>      
 				<input id="username" type="text" 
 				v-model="user.userid" placeholder="아이디" />
 				<div v-if="!idValid">
@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<div>
-				<label for="password">비밀번호 : </label>
+				<label for="password">비밀번호 </label>
 				<input id="password" type="password" @blur='passwordValid'
 				v-model="user.password" placeholder="비밀번호"/>
 				<div v-if="!passwordValidFlag">
@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<div>
-				<label for="passwordcheck">비밀번호 확인 : </label>
+				<label for="passwordcheck">비밀번호 확인 </label>
 				<input id="passwordcheck" type="password" @blur='passwordCheckValid' 
 				v-model="passwordCheck" placeholder="비밀번호 확인"/>
 				<div v-if="!passwordCheckFlag">
@@ -119,10 +119,10 @@
 	}
 
 	label[for='username']{
-		margin-right:52px;
+		margin-right:55px;
 	}
 	label[for='password']{
-		margin-right:42px;
+		margin-right:44px;
 	}
 	label[for='passwordcheck']{
 		margin-right:10px;

@@ -11,7 +11,7 @@
        {{likecnt}} </span><br>
     </div>
     <div class="sns">
-      공유하기<br>
+      공유하기<br><br>
       <img class="link_btn" src="@/assets/kakao.png" @click="kakaoLink" />
       <img class="link_btn" src="@/assets/twitter.png" @click="twitterLink"/>
       <img class="link_btn" src="@/assets/facebook.png" @click="facebookLink"/>
