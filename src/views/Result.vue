@@ -12,9 +12,9 @@
     </div>
     <div class="sns">
       공유하기<br>
-      <img class="kakao_btn" src="@/assets/kakao.png" @click="kakaoLink" />
-      <img class="twitter_btn" src="@/assets/twitter.png" @click="twitterLink"/>
-      <img class="facebook_btn" src="@/assets/facebook.png" @click="facebookLink"/>
+      <img class="link_btn" src="@/assets/kakao.png" @click="kakaoLink" />
+      <img class="link_btn" src="@/assets/twitter.png" @click="twitterLink"/>
+      <img class="link_btn" src="@/assets/facebook.png" @click="facebookLink"/>
       <img class="link_btn" src="@/assets/link.png" @click="linkCopy"/>
     </div>
 </div>
@@ -134,6 +134,9 @@
   padding-bottom:100px;
   text-align:center;
   font-size:30px;
+}
+.link_btn{
+  margin-left:10px;
 }
 .tableBanner{
   display: center;
