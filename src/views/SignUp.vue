@@ -119,10 +119,10 @@
 	}
 
 	label[for='username']{
-		margin-right:55px;
+		margin-right:57px;
 	}
 	label[for='password']{
-		margin-right:44px;
+		margin-right:45px;
 	}
 	label[for='passwordcheck']{
 		margin-right:10px;

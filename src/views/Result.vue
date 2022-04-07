@@ -4,7 +4,7 @@
     <br><br><span>선택한 견종: {{checked}}</span><br>
     <div class="container">
       <img :src='img' id="tableBanner" class="result" />
-      <h2> {{ result }}</h2>     
+      <h1> {{ result }}</h1>     
     </div>
     <div class = "like">
       <span> <font-awesome-icon icon="fa-solid fa-heart" color=tomato font-size=35px class=fa-beat v-on:click="add()" /> 

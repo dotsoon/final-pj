@@ -97,9 +97,6 @@ export default {
 h1 {
   margin-bottom:50px;
 }
-input{  
-  margin-bottom:30px;  
-}
 label{
   font-family: 'SDSamliphopangche_Basic';
   font-size:30px;
@@ -126,16 +123,19 @@ label{
   align-items: center;
 }
 .dac{
-  flex:3;  
+  flex:3; 
+  margin-bottom:30px;  
 }
 .bea{
   flex:3;
+  margin-bottom:30px; 
 }
 .mal{
   flex:3;
 }
 .ret{
   flex:3;
+  margin-bottom:30px; 
 }
 .wel{
   flex:3;
