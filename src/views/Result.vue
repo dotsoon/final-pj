@@ -1,7 +1,7 @@
 <template>
 <div>
     <h1>결과</h1>
-    <br><br><span>선택한 견종: {{checked}}</span><br>
+    <br><br><span>선택한 견종 : {{checked}}</span><br>
     <div class="container">
       <img :src='img' id="tableBanner" class="result" />
       <h1> {{ result }}</h1>     

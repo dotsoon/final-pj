@@ -45,7 +45,7 @@
       <!-- /default -->
       <!-- footer 슬롯 콘텐츠 -->
       <template slot="footer">
-          <button @click="doSend">취소</button>
+          <button class='btn' @click="doSend">취소</button>
       </template>
     </MyModal>
   </div>
