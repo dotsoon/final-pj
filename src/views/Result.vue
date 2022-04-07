@@ -47,7 +47,7 @@
     methods:{
       add(){
         if (this.likecnt == "좋아요") {         
-          this.$http.post('http://3.113.137.203:8900/dogobesitytest/testresult/', {
+          this.$http.put('http://35.76.37.170:8980/dogobesitytest/testresult/', {
                         image: JSON.parse(localStorage.getItem('image_name')),
                     })
                 .then(
@@ -96,11 +96,11 @@
         },
         twitterLink(){
           var sendText = "강아지 정상/비만 판별기"; 
-          var sendUrl = "http://3.113.137.203"; 
+          var sendUrl = "http://35.76.37.170"; 
           window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
         },
         facebookLink(){
-          var sendUrl = "http://3.113.137.203"; 
+          var sendUrl = "http://35.76.37.170"; 
           window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
         },
         linkCopy() {
