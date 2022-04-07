@@ -87,6 +87,7 @@ export default {
 				upload: this.upload,
 				})        
 				.then((res) => {
+          console.log(res)
 				if (res.status == 200) {          
           this.result = res.data['testresult'];
           let img_name = res.data['image'];
