@@ -58,6 +58,9 @@
                             alert(res.data.message);                                    
                         }
                     
+                    },
+                    (err) => {
+                        alert(res.data.message)
                     }
                 )
                 .catch((err) => {

@@ -1,7 +1,7 @@
 <template>
   <div id = "secure">
     <h1>사진첨부</h1>
-    <br><br><span>선택한 견종 : {{checked}}</span><br>
+    <br><br><span>선택한 견종: {{checked}}</span><br>
   <div class="container">
     <div class="file-upload-container" 
       @dragenter="onDragenter"
@@ -45,7 +45,7 @@
       <!-- /default -->
       <!-- footer 슬롯 콘텐츠 -->
       <template slot="footer">
-          <button class='btn' @click="doSend">취소</button>
+          <button @click="doSend">취소</button>
       </template>
     </MyModal>
   </div>
@@ -54,7 +54,6 @@
 
 <script>
 import MyModal from '../components/MyModal.vue'
-
 export default {
   components: {MyModal},
   name: 'Secure',
@@ -63,8 +62,8 @@ export default {
         fileList : [],
         isDragged : '',
         upload: { userid:JSON.parse(localStorage.getItem('userid')) ,image:null ,dog_breed:JSON.parse(localStorage.getItem('dog_breed')) },
-        modal: false,       
-        checked: JSON.parse(localStorage.getItem('dog_breed')),
+        modal: false,
+        checked: JSON.parse(localStorage.getItem('dog_breed')),    
     }
   },
   mounted() {
@@ -84,15 +83,15 @@ export default {
 					return
       } else {
         this.modal = true;
-        this.$http.post('http://35.76.37.170:8980/dogobesitytest/dogimage/',{
+        this.$http.post('http://3.113.137.203:8900/dogobesitytest/dogimage/',{
 				upload: this.upload,
 				})        
 				.then((res) => {
 				if (res.status == 200) {          
           this.result = res.data['testresult'];
           let img_name = res.data['image'];
-          localStorage.setItem('result', JSON.stringify(this.result));
           localStorage.setItem('image_name', JSON.stringify(img_name));
+          localStorage.setItem('result', JSON.stringify(this.result));
           this.modal = false;
           this.$router.push("./testresult");
 				}
