@@ -17,6 +17,17 @@
       <img class="link_btn" src="@/assets/facebook.png" @click="facebookLink"/>
       <img class="link_btn" src="@/assets/link.png" @click="linkCopy"/>
     </div>
+        <div class="diet">
+      반려견 체중 관리법<br>
+      <a href ="https://petdoc.co.kr/ency/224" target='_blank' >
+        <img class="diet" src="@/assets/diet.png" id="diet"/></a><br>
+    </div>
+    <div class="food">
+      다이어트 사료 추천<br>
+      <a href ="https://www.google.com/search?q=%EB%B0%98%EB%A0%A4%EA%B2%AC+%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8+%EC%82%AC%EB%A3%8C&ei=ht9LYv7qB4X7-QaN_qH4CQ&ved=0ahUKEwj-xdHbo_z2AhWFfd4KHQ1_CJ8Q4dUDCA4&uact=5&oq=%EB%B0%98%EB%A0%A4%EA%B2%AC+%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8+%EC%82%AC%EB%A3%8C&gs_lcp=Cgdnd3Mtd2l6EAMyBggAEAcQHjoHCAAQRxCwAzoECAAQDToICAAQDRAFEB5KBAhBGABKBAhGGABQlwRY7wlg1wpoAnABeAGAAXGIAeQGkgEDMC44mAEAoAEByAEFwAEB&sclient=gws-wiz" target='_blank'>
+        <img class="food" src="@/assets/food.png" target='_blank' id="food" /></a>
+    </div>
+
 </div>
 </template>
 
@@ -144,6 +155,16 @@
   align-items: center;
   width: 100%;
   height: 50%;
+}
+.diet{
+  font-size:30px;
+  margin-top:20px;
+  margin-bottom:100px;
+  height:100px;
+}
+.food{
+  font-size:30px;
+  height:100px;
 }
 
 </style>
