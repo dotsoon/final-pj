@@ -1,6 +1,7 @@
 <template>
   <div id = "secure">
     <h1>사진첨부</h1>
+    <br><br><span>선택한 견종: {{checked}}</span><br>
   <div class="container">
     <div class="file-upload-container" 
       @dragenter="onDragenter"
@@ -44,7 +45,7 @@
       <!-- /default -->
       <!-- footer 슬롯 콘텐츠 -->
       <template slot="footer">
-          <button @click="doSend">다음</button>
+          <button @click="doSend">취소</button>
       </template>
     </MyModal>
   </div>
@@ -107,7 +108,7 @@ export default {
     },
     doSend() {      
       this.closeModal();
-      this.$router.push("./testresult").catch(()=>{});    
+      this.$router.push("./dogimage").catch(()=>{});    
     },
     onClick () {
         this.$refs.fileInput.click()

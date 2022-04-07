@@ -91,7 +91,7 @@
 					alert('회원가입 성공!');
 					this.$router.replace({ name: "Login" });
 				}
-				if (res.status == 400) {
+				if (res.status == 409) {
 					alert('이미 존재하는 아이디 입니다');
 				}
 				})

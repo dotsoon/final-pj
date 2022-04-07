@@ -1,6 +1,7 @@
 <template>
 <div>
     <h1>결과</h1>
+    <br><br><span>선택한 견종: {{checked}}</span><br>
     <div class="container">
       <img :src='img' id="tableBanner" class="result" />
       <h2> {{ result }}</h2>     
@@ -28,15 +29,35 @@
         img: JSON.parse(localStorage.getItem('image')),
         likecnt : 0,
         result: JSON.parse(localStorage.getItem('result')),
+        checked: JSON.parse(localStorage.getItem('dog_breed')),
       }
     },
 
     methods:{
       add(){
-        if (this.likecnt == "0")
-          this.likecnt ++;
-        else
-          this.likecnt --;
+        if (this.likecnt == "좋아요") {         
+          this.$http.post('http://3.113.137.203:8900/dogobesitytest/testresult/', {
+                        image: JSON.parse(localStorage.getItem('image_name')),
+                    })
+                .then(
+                    (res) => {
+                        if (res.status == 200 ) {
+                          this.likecnt = "감사합니다!"                          
+                        } else {
+                            alert(res.data.message);                                    
+                        }
+                    
+                    },
+                    (err) => {
+                        alert(res.data.message)
+                    }
+                )
+                .catch((err) => {
+                    alert(err);
+                })
+        } else {
+          alert('좋아요는 한번만 가능합니다!')
+        }
       },
       kakaoLink () {
           window.Kakao.Link.sendDefault({
@@ -71,14 +92,16 @@
           var sendUrl = "http://3.113.137.203"; 
           window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
         },
-        async linkCopy() {
-          try {
-            await navigator.clipboard.writeText(location.href);
-            console.log('Page URL copied to clipboard');
-            alert('URL이 복사되었습니다.');
-          } catch (err) {
-            console.error('Failed to copy: ', err);
-          }
+        linkCopy() {
+          	var url = '';
+	          var textarea = document.createElement("textarea");
+	          document.body.appendChild(textarea);
+	          url = window.document.location.href;
+	          textarea.value = url;
+	          textarea.select();
+	          document.execCommand("copy");
+	          document.body.removeChild(textarea);
+	          alert("URL이 복사되었습니다.")
         }
     }
   }
@@ -112,11 +135,7 @@
   text-align:center;
   font-size:30px;
 }
-img{
-  margin-top:20px;
-  height:50px;
-}
-img[id="tableBanner"]{
+.tableBanner{
   display: center;
   justify-content: center;
   align-items: center;
