@@ -1,9 +1,9 @@
 <template>
     <div id="login">
-        <img alt="Dog" src="../assets/Dog.jpg" height="350px" width="350px">
+        <img alt="Dog" src="../assets/Dog.jpg" height="350px" width="350px" id="login_img">
         <h2>로그인</h2>
         <div class="form-inputs">
-            <label for="username">아 이 디 </label>
+            <label for="username">아 이 디</label>
             <input type="text" id="username" name="username"  
             v-model="user.userid" placeholder="Username" />
         </div>
@@ -17,8 +17,7 @@
     </div>
 </template>
 
-<script>
-    localStorage.clear()
+<script>    
     export default {        
         name: 'Login',
         data() {
@@ -30,6 +29,9 @@
                 // JSON.parse(localStorage.getItem('userData')) || '',                
             }
         },
+        mounted() {
+            localStorage.clear();
+        },
         methods: {
             login() {                                
                 this.$http.post('http://35.76.37.170:8980/dogobesitytest/', {
@@ -38,7 +40,8 @@
                 .then(
                     (res) => {
                         if (res.status == 200 ) {                                                                       
-                            localStorage.setItem('userid',JSON.stringify(this.user.userid));                             
+                            localStorage.setItem('userid',JSON.stringify(this.user.userid));
+                            localStorage.setItem('authenticated',JSON.stringify("true"));                           
                             this.$emit("authenticated", true);
                             this.$router.replace({ name: "Check" });
                         } else {
@@ -82,12 +85,20 @@ input {
     padding-bottom: 20px;
     font-family: 'SDSamliphopangche_Basic';
     font-size: 20px;}
+#login_img{    
+    height: 350px;
+    width: 100%;
+    max-width: 350px;     
+    display: center;
+    justify-content: center;
+    align-items: center;
+}
 
 label[for='username']{
     margin-right:20px;
 }
 label[for='password']{
-    margin-right:10px;
+    margin-right:9px;
 }
 
 .btn{

@@ -1,23 +1,23 @@
 <template>
 <div>
     <h1>결과</h1>
-    <br><br><span>선택한 견종 : {{checked}}</span><br>
-    <div class="container">
-      <img :src='img' id="tableBanner" class="result" />
-      <h1> {{ result }}</h1>     
+    <br><br><span>선택한 견종: {{checked}}</span><br>
+    <div class="result_container">
+      <img :src='img' class="result_img" />           
     </div>
+    <h2 id='result_text'> {{ result }}</h2>
     <div class = "like">
       <span> <font-awesome-icon icon="fa-solid fa-heart" color=tomato font-size=35px class=fa-beat v-on:click="add()" /> 
        {{likecnt}} </span><br>
     </div>
     <div class="sns">
-      공유하기<br><br>
-      <img class="link_btn" src="@/assets/kakao.png" @click="kakaoLink" />
-      <img class="link_btn" src="@/assets/twitter.png" @click="twitterLink"/>
-      <img class="link_btn" src="@/assets/facebook.png" @click="facebookLink"/>
+      공유하기<br>
+      <img class="kakao_btn" src="@/assets/kakao.png" @click="kakaoLink" />
+      <img class="twitter_btn" src="@/assets/twitter.png" @click="twitterLink"/>
+      <img class="facebook_btn" src="@/assets/facebook.png" @click="facebookLink"/>
       <img class="link_btn" src="@/assets/link.png" @click="linkCopy"/>
     </div>
-        <div class="diet">
+    <div class="diet">
       반려견 체중 관리법<br>
       <a href ="https://petdoc.co.kr/ency/224" target='_blank' >
         <img class="diet" src="@/assets/diet.png" id="diet"/></a><br>
@@ -27,7 +27,6 @@
       <a href ="https://www.google.com/search?q=%EB%B0%98%EB%A0%A4%EA%B2%AC+%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8+%EC%82%AC%EB%A3%8C&ei=ht9LYv7qB4X7-QaN_qH4CQ&ved=0ahUKEwj-xdHbo_z2AhWFfd4KHQ1_CJ8Q4dUDCA4&uact=5&oq=%EB%B0%98%EB%A0%A4%EA%B2%AC+%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8+%EC%82%AC%EB%A3%8C&gs_lcp=Cgdnd3Mtd2l6EAMyBggAEAcQHjoHCAAQRxCwAzoECAAQDToICAAQDRAFEB5KBAhBGABKBAhGGABQlwRY7wlg1wpoAnABeAGAAXGIAeQGkgEDMC44mAEAoAEByAEFwAEB&sclient=gws-wiz" target='_blank'>
         <img class="food" src="@/assets/food.png" target='_blank' id="food" /></a>
     </div>
-
 </div>
 </template>
 
@@ -38,12 +37,17 @@
     data() {
       return{
         img: JSON.parse(localStorage.getItem('image')),
-        likecnt : '좋아요',
+        likecnt : "좋아요",
         result: JSON.parse(localStorage.getItem('result')),
         checked: JSON.parse(localStorage.getItem('dog_breed')),
       }
     },
-
+    mounted() {
+      this.$emit("authenticated", JSON.parse(localStorage.getItem('authenticated')) );
+      if(!this.$parent.authenticated) {
+        this.$router.replace({ name: "Login" });
+      }
+    },
     methods:{
       add(){
         if (this.likecnt == "좋아요") {         
@@ -57,6 +61,10 @@
                         } else {
                             alert(res.data.message);                                    
                         }
+                    
+                    },
+                    (err) => {
+                        alert(res.data.message)
                     }
                 )
                 .catch((err) => {
@@ -115,19 +123,14 @@
 </script>
 
 <style>
-.container {
-  min-height: 300px;
-  width: 500px;
-  text-align:center;
-  margin: 0 auto;
-  margin-top:50px;
-}
-.result {
-  height: 300px;
-  padding: 20px;
+.result_img {
+  margin-top:20px;
+  height: 350px;
+  width: 100%;
+  max-width: 350px;  
   box-shadow: 0 0.625rem 1.25rem #0000001a;
   border-radius: 20px;
-  display: flex;
+  display: center;
   justify-content: center;
   align-items: center;
 }
@@ -136,21 +139,26 @@
   margin-bottom:40px;
   font-size:30px;
 }
+.button{
+  margin-top:50px;
+  margin-right : 10px;
+  font-size: 20px;
+  border: 3px solid black;
+  border-radius:10px;
+  color: black; padding: 5px;
+  font-family: 'SDSamliphopangche_Outline';
+  -webkit-transition-duration: 0.4s; 
+  transition-duration: 0.4s;
+}
+.button:hover {
+  background: orange;
+  color: black;
+}
+
 .sns{
   padding-top:25px;
-  padding-bottom:100px;
   text-align:center;
   font-size:30px;
-}
-.link_btn{
-  margin-left:10px;
-}
-.tableBanner{
-  display: center;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50%;
 }
 .diet{
   font-size:30px;
@@ -162,5 +170,4 @@
   font-size:30px;
   height:100px;
 }
-
 </style>

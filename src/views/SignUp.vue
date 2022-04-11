@@ -3,30 +3,32 @@
   <!-- prevent: 새로고침 방지 -->
  	<form @submit.prevent="signUp">
 		<div id='signup'>
-			<div class="form-inputs">
-				<label for="username">아이디 </label>      
+		<div class="form-inputs">
+			<div>
+				<label for="username">아이디</label>      
 				<input id="username" type="text" 
 				v-model="user.userid" placeholder="아이디" />
 				<div v-if="!idValid">
 					유효하지 않은 아이디입니다.			
 				</div>
 			</div>
-			<div class="form-inputs">
-				<label for="password">비밀번호 </label>
+			<div>
+				<label for="password">비밀번호</label>
 				<input id="password" type="password" @blur='passwordValid'
 				v-model="user.password" placeholder="비밀번호"/>
 				<div v-if="!passwordValidFlag">
 					비밀번호는 숫자+영문자 조합으로 구성해주세요.
 				</div>
 			</div>
-			<div class="form-inputs">
-				<label for="passwordcheck">비밀번호 확인 </label>
+			<div>
+				<label for="passwordcheck">비밀번호 확인</label>
 				<input id="passwordcheck" type="password" @blur='passwordCheckValid' 
 				v-model="passwordCheck" placeholder="비밀번호 확인"/>
 				<div v-if="!passwordCheckFlag">
 					비밀번호가 동일하지 않습니다.
 				</div>
 			</div>
+		</div>
 		</div>
 		<button type='submit' class="btn">회원 가입</button>
 		<div>
@@ -93,34 +95,40 @@
 					alert('이미 존재하는 아이디 입니다');
 				}
 				})
-				.catch(function (error) {
-				alert('error');
+				.catch((err) => {					
+                    if(err.response.status == 409) {
+						alert('이미 존재하는 아이디 입니다');
+					} else {
+						alert(err)
+					}
 				})
-				}			
+				}	
 			},			
 		}
   	}
 </script>
 
 <style>
-input {
+    input {
     width:200px; 
     height:30px; 
 	font-family: 'SDSamliphopangche_Basic';
     border-radius:5px;
+	margin-bottom:20px;
 }
-#signup .form-inputs {
-	padding-bottom:20px;
-	font-family: 'SDSamliphopangche_Basic';
-	font-size: 20px; 
-}
-label[for='username']{
-	margin-right:52px;
-}
-label[for='password']{
-	margin-right:42px;
-}
-label[for='passwordcheck']{
-	margin-right:10px;
-}
+
+	#signup .form-inputs {
+		font-family: 'SDSamliphopangche_Basic';
+		font-size: 20px; 
+	}
+
+	label[for='username']{
+		margin-right:62px;
+	}
+	label[for='password']{
+		margin-right:46px;
+	}
+	label[for='passwordcheck']{
+		margin-right:10px;
+	}
 </style>

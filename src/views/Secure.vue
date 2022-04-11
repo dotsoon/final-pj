@@ -67,9 +67,10 @@ export default {
     }
   },
   mounted() {
-        if(!this.$parent.authenticated) {
-            this.$router.replace({ name: "Login" });
-      }
+    this.$emit("authenticated", JSON.parse(localStorage.getItem('authenticated')) );
+    if(!this.$parent.authenticated) {
+        this.$router.replace({ name: "Login" });
+    }
   },  
   methods: {    
     result(){    
@@ -87,8 +88,7 @@ export default {
 				upload: this.upload,
 				})        
 				.then((res) => {
-          console.log(res)
-				if (res.status == 200) {          
+				if (res.status == 201) {          
           this.result = res.data['testresult'];
           let img_name = res.data['image'];
           localStorage.setItem('image_name', JSON.stringify(img_name));
@@ -99,7 +99,7 @@ export default {
 				if (res.status == 400) {
 					alert(res.data.message);
           this.$router.push("./dogimage");
-				}
+				} 
 				})
 				.catch(function (error) {
 				alert('error');
@@ -171,8 +171,10 @@ export default {
 }
 
 .container {
+  display: block;
   min-height: 300px;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   margin: 0 auto;
   margin-top:50px;
 }
@@ -215,6 +217,7 @@ export default {
     opacity: .6;
   }
   &-container {
+    display: flex;
     height: 300px;
     padding: 20px;
     margin: 0 auto;

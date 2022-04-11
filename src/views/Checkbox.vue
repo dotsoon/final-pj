@@ -60,7 +60,7 @@
       </div>
     </div>
     <div>
-      <br><br><span>선택한 견종 : {{checked[0]}}</span><br>
+      <br><br><span>선택한 견종: {{checked[0]}}</span><br>
       <button class="btn" @click="secure()">다음</button>
     </div>
   </div>
@@ -70,8 +70,14 @@ export default {
     name:'dogcheck',
     data(){
         return{
-            checked: []
+            checked: [],
         }
+    },
+    mounted() {
+      this.$emit("authenticated", JSON.parse(localStorage.getItem('authenticated')) );
+      if(!this.$parent.authenticated) {
+        this.$router.replace({ name: "Login" });
+      }
     },
     methods: {
       check_one:function(){
@@ -96,6 +102,11 @@ export default {
 
 h1 {
   margin-bottom:50px;
+}
+input{
+  width:20px;
+  height:20px;
+  margin-bottom:30px;
 }
 label{
   font-family: 'SDSamliphopangche_Basic';
@@ -123,19 +134,16 @@ label{
   align-items: center;
 }
 .dac{
-  flex:3; 
-  margin-bottom:30px;  
+  flex:3;  
 }
 .bea{
   flex:3;
-  margin-bottom:30px; 
 }
 .mal{
   flex:3;
 }
 .ret{
   flex:3;
-  margin-bottom:30px; 
 }
 .wel{
   flex:3;
