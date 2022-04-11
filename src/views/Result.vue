@@ -8,16 +8,17 @@
     <h2 id='result_text'> {{ result }}</h2>
     <div class = "like">
       <span> <font-awesome-icon icon="fa-solid fa-heart" color=tomato font-size=35px class=fa-beat v-on:click="add()" /> 
-       {{likecnt}} </span><br>
+       {{likecnt}} </span><br><br>
+      
     </div>
     <div class="sns">
-      공유하기<br>
+      공유하기<br><br>
       <img class="kakao_btn" src="@/assets/kakao.png" @click="kakaoLink" />
       <img class="twitter_btn" src="@/assets/twitter.png" @click="twitterLink"/>
       <img class="facebook_btn" src="@/assets/facebook.png" @click="facebookLink"/>
       <img class="link_btn" src="@/assets/link.png" @click="linkCopy"/>
     </div>
-    <div class="diet">
+    <div class="diet"><br>
       반려견 체중 관리법<br>
       <a href ="https://petdoc.co.kr/ency/224" target='_blank' >
         <img class="diet" src="@/assets/diet.png" id="diet"/></a><br>
