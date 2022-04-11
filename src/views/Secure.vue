@@ -100,6 +100,10 @@ export default {
 					alert(res.data.message);
           this.$router.push("./dogimage");
 				} 
+        if (res.status == 204) {          
+          alert('강아지 사진을 넣어주세요');
+          this.modal = false;
+	      }
 				})
 				.catch(function (error) {
 				alert('error');

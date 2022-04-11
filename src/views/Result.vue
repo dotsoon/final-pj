@@ -8,17 +8,19 @@
     <h2 id='result_text'> {{ result }}</h2>
     <div class = "like">
       <span> <font-awesome-icon icon="fa-solid fa-heart" color=tomato font-size=35px class=fa-beat v-on:click="add()" /> 
-       {{likecnt}} </span><br><br>
-      
+       {{likecnt}} </span><br>
+      <div v-if='count_show'>
+        이용자 수 :{{count.total_count}} 좋아요 수 :{{count.like_count}}
+      </div>
     </div>
     <div class="sns">
-      공유하기<br><br>
+      공유하기<br>
       <img class="kakao_btn" src="@/assets/kakao.png" @click="kakaoLink" />
       <img class="twitter_btn" src="@/assets/twitter.png" @click="twitterLink"/>
       <img class="facebook_btn" src="@/assets/facebook.png" @click="facebookLink"/>
       <img class="link_btn" src="@/assets/link.png" @click="linkCopy"/>
     </div>
-    <div class="diet"><br>
+    <div class="diet">
       반려견 체중 관리법<br>
       <a href ="https://petdoc.co.kr/ency/224" target='_blank' >
         <img class="diet" src="@/assets/diet.png" id="diet"/></a><br>
@@ -39,6 +41,8 @@
       return{
         img: JSON.parse(localStorage.getItem('image')),
         likecnt : "좋아요",
+        count : {total_count:null, like_count:null},
+        count_show : false,
         result: JSON.parse(localStorage.getItem('result')),
         checked: JSON.parse(localStorage.getItem('dog_breed')),
       }
@@ -50,6 +54,24 @@
       }
     },
     methods:{
+      getLike() {
+          this.$http.GET('http://35.76.37.170:8980/dogobesitytest/login/')
+                .then(
+                    (res) => {
+                        if (res.status == 200 ) {
+                          like.total_count = res.data['total_count'];
+                          like.like_count = res.data['like_count'];
+                          count_show = true;
+                        }                     
+                    },
+                    (err) => {
+                        alert(res.data.message)
+                    }
+                )
+                .catch((err) => {
+                    alert(err);
+                })
+      },    
       add(){
         if (this.likecnt == "좋아요") {         
           this.$http.put('http://35.76.37.170:8980/dogobesitytest/testresult/', {
@@ -58,7 +80,8 @@
                 .then(
                     (res) => {
                         if (res.status == 200 ) {
-                          this.likecnt = "감사합니다!"                          
+                          this.likecnt = "감사합니다!"  
+                          getLike()                        
                         } else {
                             alert(res.data.message);                                    
                         }
@@ -101,7 +124,7 @@
         },
         twitterLink(){
           var sendText = "강아지 정상/비만 판별기"; 
-          var sendUrl = "http://35.76.37.170"; 
+          var sendUrl = "hhttp://35.76.37.170"; 
           window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
         },
         facebookLink(){
@@ -118,7 +141,7 @@
 	          document.execCommand("copy");
 	          document.body.removeChild(textarea);
 	          alert("URL이 복사되었습니다.")
-        }
+        },      
     }
   }
 </script>
