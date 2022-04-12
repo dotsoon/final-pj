@@ -6,7 +6,7 @@
       <img :src='img' class="result_img" />           
     </div>
     <h2 id='result_text'> {{ result }}</h2>
-    <h3 id='result_text'> [이전 결과: {{pre_rate}}%]    [현재 결과: {{cur_rate}}%] </h3>
+    <h3 id='result_text'> [비만일 확률 : {{accuracy}}%] </h3>
     <div class = "like">
       <span> <font-awesome-icon icon="fa-solid fa-heart" color=tomato font-size=35px class=fa-beat v-on:click="add()" /> 
        {{likecnt}} </span><br><br>
@@ -46,8 +46,7 @@
         count_show : false,
         result: JSON.parse(localStorage.getItem('result')),
         checked: JSON.parse(localStorage.getItem('dog_breed')),
-        pre_rate: JSON.parse(localStorage.getItem('pre_rate')),
-        cur_rate: JSON.parse(localStorage.getItem('cur_rate')),
+        accuracy: JSON.parse(localStorage.getItem('accuracy')),
       }
     },
     mounted() {
