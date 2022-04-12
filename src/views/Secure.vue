@@ -89,10 +89,14 @@ export default {
 				})        
 				.then((res) => {
 				if (res.status == 201) {          
-          this.result = res.data['testresult'];
+          this.result = res.data['cur_result'];
+          let pre_rate = res.data['pre_rate'];
+          let cur_rate = res.data['cur_rate'];
           let img_name = res.data['image'];
           localStorage.setItem('image_name', JSON.stringify(img_name));
           localStorage.setItem('result', JSON.stringify(this.result));
+          locatStorage.setItem('cur_rate', JSON.stringify(cur_rate));
+          locatStorage.setItem('pre_rate', JSON.stringify(pre_rate));
           this.modal = false;
           this.$router.push("./testresult");
 				}
